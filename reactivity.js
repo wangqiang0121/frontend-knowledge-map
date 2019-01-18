@@ -1,3 +1,8 @@
+/*
+  The Best Explanation of JavaScript Reactivity
+  (https://medium.com/vue-mastery/the-best-explanation-of-javascript-reactivity-fea6112dd80d)
+*/
+
 let data = { price: 5, quantity: 2 }
 let target = null
 
