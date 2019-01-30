@@ -91,5 +91,5 @@ targetDOM → parentNode → ... → body → document → window
 - JavaScript和DOM节点之间的关联变少了，这样也就减少了因循环引用而带来的内存泄漏发生的概率。
 
 ## `this`与`event.target`、`event.curentTarget`的区别
-- `this`等于`event.currentTarget`，表示当前触发事件的元素（被激活的）
+- `this`等于`event.currentTarget`，当前绑定事件的元素
 - `event.target`事件触发的源头。
