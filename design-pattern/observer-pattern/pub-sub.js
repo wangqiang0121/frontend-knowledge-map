@@ -4,6 +4,14 @@
  * 典型应用：EventBus
  */
 
+// 发布消息的主体
+ class Publisher {
+  publish (data, cb) {
+    cb(data)
+  }
+}
+
+// 事件集中处理
 class EventBus {
   constructor() {
     this.eventTopics = {}
@@ -11,7 +19,7 @@ class EventBus {
 
   on(eventName, handler) {
     const eventCollect = this.eventTopics[eventName]
-    if (!eventCollect || eventCollect.length === 0) {
+    if (!eventCollect) {
       this.eventTopics[eventName] = []
     }
     this.eventTopics[eventName].push(handler)
@@ -19,15 +27,20 @@ class EventBus {
 
   emit(eventName, params) {
     const eventCollect = this.eventTopics[eventName]
-    if (!eventCollect || eventCollect.length < 1) return;
+    if (!eventCollect) return;
     eventCollect.forEach(function (listener) {
       listener(!!params ? params : {});
     });
   }
 }
 
+// 实例化一个事件发布者
+const publisher = new Publisher()
+// 实例化一个事件管理中心
 const eventBus = new EventBus()
+// 新建一个事件观察者
+const subscriber = eventBus.on('click', (data) => { console.log(data) })
 
-eventBus.on('click', (data) => { console.log('click事件触发') })
-
-eventBus.emit('click')
+publisher.publish('发布click事件', (data) => {
+  eventBus.emit('click', data)
+})

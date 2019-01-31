@@ -32,7 +32,9 @@ class Observer {
   }
 }
 
+// 被观察的对象
 const subject = new Subject()
+// 观察者
 const person1 = new Observer('小明')
 const person2 = new Observer('小红')
 const person3 = new Observer('小张')
@@ -40,7 +42,8 @@ const person3 = new Observer('小张')
 subject.addObserver(person1)
 subject.addObserver(person2)
 subject.addObserver(person3)
-// 消息主体直接通知订阅者
+
+// 被观察的对象通知观察者
 subject.notify('向左')
 
 subject.removeObserver(person2)
