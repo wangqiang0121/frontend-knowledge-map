@@ -17,4 +17,4 @@
 
 ## 参考
 - [vue的双向绑定原理及实现](http://www.cnblogs.com/canfoo/p/6891868.html)
-- [掘金小册——剖析 Vue.js 内部运行机制]()
+- [掘金小册——剖析 Vue.js 内部运行机制]
