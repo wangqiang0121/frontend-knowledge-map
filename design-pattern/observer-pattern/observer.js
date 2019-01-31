@@ -40,7 +40,7 @@ const person3 = new Observer('小张')
 subject.addObserver(person1)
 subject.addObserver(person2)
 subject.addObserver(person3)
-
+// 消息主体直接通知订阅者
 subject.notify('向左')
 
 subject.removeObserver(person2)
