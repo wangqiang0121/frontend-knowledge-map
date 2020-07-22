@@ -1,3 +1,14 @@
+/**
+ * Generator
+ * 阿里框架内DVA的语法主要就是Generator
+ *
+ * 1、Generator 函数返回一个迭代器，函数内部通过 yield 中断。
+ *    通过返回的迭代器，执行 next 方法，顺序的执行中断内容。
+ * 2、next 方法传入的参数，是上一个 yield 表达式的值
+ * 3、Generator 可以通过yield直接显示的返回内容
+ * 4、Generator 函数不能作为构造函数
+ */
+
 // 简单示例
 function* idMaker(){
   var index = 0;
@@ -28,7 +39,7 @@ function* anotherGenerator(i) {
   yield i + 3;
 }
 
-function* generator(i){
+function* generator(i) {
   yield i;
   yield* anotherGenerator(i);
   /*  等价于在其中添加如下代码：
@@ -48,20 +59,21 @@ console.log(gen.next().value); // 13
 console.log(gen.next().value); // 20
 
 // 传递参数
-function* logGenerator() {
-  console.log(yield);//首次执行的中断处
-  console.log(yield);
-  console.log(yield);
+function *foo(x) {
+  let y = 2 * (yield (x + 1));
+  let z = yield(y/3);
+  return (x + y + z);
 }
 
-var gen = logGenerator();
-
-// 首次调用 next() 会执行到第一个 yield 语句处
-gen.next();
-/* 调用 next() 方法时，如果传入了参数，那么这个参数会取代生成器函数中对应执行位置的 yield 表达式（整个表达式被这个值替换） */
-gen.next('pretzel'); // pretzel
-gen.next('california'); // california
-gen.next('mayonnaise'); // mayonnaise
+let it = foo(5);
+console.log(it.next());
+/**
+ * it.next(12)
+ * 传入的值，等于上一个 yield 的返回值
+ * 所以 y = 2 * 12 = 24; z = 24 / 3 = 8;
+ */
+console.log(it.next(12));
+console.log(it.next(13));
 
 // 显示返回
 function* yieldAndReturn() {

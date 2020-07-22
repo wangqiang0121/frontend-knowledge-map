@@ -4,6 +4,10 @@
 - Object.defineProperty()
 - 观察者模式
 
+## 核心
+- Vue 2 Object.defineProperty() 实现数据监听
+- Vue 3 Proxy 实现数据监听
+
 ## 实现思路
 - 需要一个监听器`Observer`，用来监听所有属性。
 - 当属性发生变化，通知订阅者`Watcher`看是否需要更新。
