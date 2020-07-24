@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <!-- https://juejin.im/post/59b73d5bf265da064618731d -->
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+      }
+      .left {
+        background: #73de80; /* 绿色 */
+        opacity: 0.5;
+        border: 3px solid #f31264;
+        width: 200px;
+        height: 200px;
+        float: left;
+      }
+      .right {
+        /* 粉色 */
+        background: #ef5be2;
+        opacity: 0.5;
+        border: 3px solid #f31264;
+        width: 400px;
+        min-height: 100px;
+      }
+      .box {
+        background: #888;
+        height: 100%;
+        margin-left: 50px;
+      }
+
+      .little {
+        background: #fff;
+        width: 50px;
+        height: 50px;
+        margin: 10px;
+        float: left;
+      }
+
+      .BFC {
+        overflow: hidden;
+      }
+    </style>
+    <div class="box BFC">
+      <div class="left"></div>
+      <div class="right BFC">
+        <div class='little'></div>
+        <div class='little'></div>
+        <div class='little'></div>
+      </div>
+    </div>
+
+    <div style="overflow: hidden; width: 100%;">
+      <h3>Example1 布局解释：</h3>
+      <p>1、left 绿色区域浮动，脱离正常文档流，从容器最左侧开始渲染；</p>
+      <p>2、因为 left 脱离正常文档流，所以right 粉色区域占据left开始位置，从容器最左侧开始渲染</p>
+      <p>
+        3、因为 box 容器并未产生BFC，所以在高度计算时，并没有考虑绿色区域，发生了<b>高度坍缩</b>
+      </p>
+
+      <h3>利用BFC特性解决高度坍缩：</h3>
+      <p>1、容器添加 overflow: hidden 属性，创建BFC，BFC在计算高度时，会将浮动元素也算在其中</p>
+      <br />
+    </div>
+
+    <div style="overflow: hidden; width: 100%;">
+      <h3>Example2 布局解释：</h3>
+      <p>1、在粉色right区域，添加三个元素</p>
+      <p>2、三个元素受到了左侧区域与右侧区域的挤压，元素超出右侧区域</p>
+
+      <h3>利用BFC特性解决上述问题</h3>
+      <br />
+    </div>
+  </body>
+</html>

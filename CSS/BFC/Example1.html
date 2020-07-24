@@ -12,24 +12,27 @@
     </style>
   </head>
   <body>
-    <!-- BFC垂直方向边距重叠 -->
+    <!-- BFC 解决垂直方向边距重叠 -->
     <section id="margin">
       <style>
         #margin {
           background: pink;
-          overflow: hidden;
         }
         #margin p {
-          margin: 5px auto 25px;
+          margin: 20px 0;
           background: red;
+        }
+        .BFC {
+          overflow: hidden;
         }
       </style>
       <p>1</p>
-      <div style="overflow: hidden;">
+      <div class="BFC">
         <p>2</p>
       </div>
       <p>3</p>
     </section>
+
     <!-- BFC不与float重叠 -->
     <section id="layout">
       <style>
@@ -46,30 +49,16 @@
         #layout .right {
           height: 110px;
           background: #ccc;
+        }
+
+        .BFC {
           /* 创建BFC元素，不会与float元素发生融合 */
           overflow: auto;
         }
       </style>
+      <div>left 元素粉色，红色背景，浮动；right 灰色背景，与left融合，看不见红色</div>
       <dic class="left"></dic>
-      <div class="right"></div>
-    </section>
-
-    <!-- BFC即使子元素是float也会参与高度计算 -->
-    <section id="float">
-      <style>
-        #float {
-          background: red;
-          margin-top: 20px;
-          /* 创建BFC，让float元素参与高度计算 */
-          /*overflow: auto;*/
-          float: left;
-        }
-        #float .float {
-          font-size: 30px;
-          float: left;
-        }
-      </style>
-      <div class="float">我是浮动元素</div>
+      <div class="right BFC"></div>
     </section>
   </body>
 </html>
