@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+  </head>
+  <style>
+    body, html {
+      margin: 0;
+      padding: 0;
+    }
+    /* 父级元素flex，会导致 子子 元素 宽度 100% 失效 */
+    .flex {
+      display: flex;
+    }
+
+    .w100 {
+      width: 100%;
+    }
+
+    /* 父级元素 flex , 直接子元素 设置为 100%； 后续宽度能恢复为正常 100% */
+    /* .flex-child-first {
+      width: 100%;
+    } */
+
+    .wrap {
+      width: 100%;
+      background-color: red;
+      margin: 10px 0;
+      padding: 20px;
+      box-sizing: border-box;
+    }
+
+    .box1 {
+      width: 1500px;
+      height: 1000px;
+      background-color: blue;
+      max-width: 100%;
+    }
+
+    .box2 {
+      width: 1500px;
+      height: 1000px;
+      background-color: blue;
+      max-width: 100%;
+    }
+
+    div {
+      font-size: 40px;
+    }
+
+    .example2 {
+      background-color: red;
+      margin: 10px 0;
+      padding: 20px;
+      box-sizing: border-box;
+    }
+
+    .example-box-1 {
+      background-color: blue;
+    }
+
+
+  </style>
+  <body>
+    <!-- flex 内套 100% 宽度元素 -->
+    <div class="flex">
+      <div class="flex-child-first">
+        <div class="wrap">
+          <div class="box1">
+            <h2>区块1</h2>
+            不过，如果想完全祛除雀斑，恐怕还得借助医学美容的方法，比如激光或强脉冲光治疗，也就是常说的光子嫩肤。
+          </div>
+          <div class="box2">
+            <h2>区块2</h2>
+            不过，如果想完全祛除雀斑，恐怕还得借助医学美容的方法，比如激光或强脉冲光治疗，也就是常说的光子嫩肤。
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- 100% 宽度元素 套 flex元素 -->
+    <div class="w100 example2">
+      宽度100%容器
+      <div class="flex example-box-1">flex子元素flex子元素flex子元素flex子元素flex子元素flex子元素flex子元素flex子元素flex子元素flex子元素flex子元素flex子元素flex子元素flex子元素flex子元素flex子元素flex子元素flex子元素flex子元素</div>
+    </div>
+  </body>
+</html>

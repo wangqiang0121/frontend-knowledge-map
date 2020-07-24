@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>BFC</title>
+    <style>
+      html,
+      * {
+        margin: 0;
+        padding: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- BFC垂直方向边距重叠 -->
+    <section id="margin">
+      <style>
+        #margin {
+          background: pink;
+          overflow: hidden;
+        }
+        #margin p {
+          margin: 5px auto 25px;
+          background: red;
+        }
+      </style>
+      <p>1</p>
+      <div style="overflow: hidden;">
+        <p>2</p>
+      </div>
+      <p>3</p>
+    </section>
+    <!-- BFC不与float重叠 -->
+    <section id="layout">
+      <style>
+        #layout {
+          background: red;
+          margin-top: 20px;
+        }
+        #layout .left {
+          float: left;
+          width: 100px;
+          height: 100px;
+          background: pink;
+        }
+        #layout .right {
+          height: 110px;
+          background: #ccc;
+          /* 创建BFC元素，不会与float元素发生融合 */
+          overflow: auto;
+        }
+      </style>
+      <dic class="left"></dic>
+      <div class="right"></div>
+    </section>
+
+    <!-- BFC即使子元素是float也会参与高度计算 -->
+    <section id="float">
+      <style>
+        #float {
+          background: red;
+          margin-top: 20px;
+          /* 创建BFC，让float元素参与高度计算 */
+          /*overflow: auto;*/
+          float: left;
+        }
+        #float .float {
+          font-size: 30px;
+          float: left;
+        }
+      </style>
+      <div class="float">我是浮动元素</div>
+    </section>
+  </body>
+</html>
+
+<!--
+2. 块级元素的垂直方向会发生margin合并，存在以下三种场景：
+* 相邻兄弟元素之间margin合并；
+* 父元素margin-top和子元素margin-top，父元素margin-bottom和子元素margin-bottom；
+* 空块级元素自身的margin-top和margin-botom合并，例子如下。
+
+要阻止margin合并，可以：1. 给元素设置 bfc；2. 设置border或padding阻隔margin；3.  用内联元素（如文字）阻隔；4. 给父元素设定高度。
+这里父元素设置overflow: hidden是利用 bfc 的特性阻止子元素的margin和父元素合并，换成其他 bfc 特性或者设置 1px 的 border / padding都是可以达到效果的。
+
+-->

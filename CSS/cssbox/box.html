@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>CSS盒模型</title>
+    <style>
+    html, * {
+        margin: 0;
+        padding: 0;
+    }
+</style>
+</head>
+<body>
+    <!-- 父子元素边距重叠 -->
+    <section id="sec">
+        <style>
+            #sec {
+                background: #f00;
+                /* 创建了一个BFC */
+                overflow: hidden;
+            }
+            .child {
+                height: 100px;
+                background: yellow;
+                margin-top: 10px;
+            }
+        </style>
+        <article class="child"></article>
+    </section>
+    <!-- 兄弟元素边距重叠 -->
+    <!-- 空元素边距重叠 -->
+</body>
+</html>
