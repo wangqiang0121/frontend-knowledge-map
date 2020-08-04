@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <style>
+    .container {
+      width: 800px;
+      background-color: beige;
+    }
+    .box {
+      width: 120px;
+      height: 50px;
+    }
+    .block {
+      display: block;
+      background-color: deepskyblue;
+    }
+    .inline-block {
+      display: inline-block;
+      background-color: yellowgreen;
+    }
+    .width-length {
+      width: 300px;
+    }
+    .width-percentage {
+      width: 75%;
+    }
+    .width-100 {
+      width: 100%;
+    }
+    .width-min-content {
+      width: min-content;
+    }
+    .width-max-content {
+      width: max-content;
+    }
+    .width-auto {
+      width: auto;
+    }
+    .padding {
+      padding: 10px;
+    }
+    .border {
+      border: 2px solid black;
+    }
+    .margin {
+      margin: 10px;
+    }
+    .red {
+      color: red;
+    }
+    .borderBox {
+      box-sizing: border-box;
+    }
+  </style>
+  <body>
+    <h3>CSS width 属性</h3>
+    <p>背景知识</p>
+    <ul>
+      <li>盒子模型分为四个区域 content、padding、border、margin</li>
+      <li>标准模型下（box-sizing: content-box）元素的 width 属性设置的是 content 区域的宽度</li>
+      <li>IE模型下（box-sizing: border-box）元素 width 属性设置的是 content + padding + border 的全部宽度</li>
+    </ul>
+    <p>css 的width属性，设置的是元素 content 区域的宽度，content区域是指包裹在元素padding，border，margin内的元素。</p>
+    <div class="container">
+      <p>容器宽 800px</p>
+      <div class="block box"><b>蓝色是块级元素</b></div>
+      <div class="inline-block box"><b>绿色是行内元素</b></div>
+      <p>width 设置长度值（单位：px, em, rem）</p>
+      <div class="block width-length">This is a box where you can change the width.</div>
+      <div class="inline-block width-length">This is a box where you can change the width.</div>
+      <p>width 设置百分比（eg: 75%）</p>
+      <div class="block width-percentage">This is a box where you can change the width.</div>
+      <div class="inline-block width-percentage">This is a box where you can change the width.</div>
+      <p class="red">width 设置百分比（eg: 100%）</p>
+      <div class="block width-100">This is a box where you can change the width.</div>
+      <div class="inline-block width-100">This is a box where you can change the width.</div>
+      <div class="block width-100 padding border margin">
+        <p>width: 设置为100% 等于 800px</p>
+        <p>标准盒子模型下：width = content</p>
+        <p>width = content width = 800px</p>
+        <p>box width: 800 + 10 * 2 + 2 * 2 = 824</p>
+      </div>
+      <div class="block width-100 padding border margin borderBox">
+        <b>设置了 box-sizing: border-box</b>
+        <p>width: 设置为100% 等于 800px</p>
+        <p>IE盒子模型下：width = content + padding + border = 800px</p>
+        <p>box width: 800，content width = 800 - 20 * 2 - 2 * 2 = 776</p>
+      </div>
+      <p class="red">width 设置 auto</p>
+      <div class="block width-auto">This is a box where you can change the width.</div>
+      <div class="inline-block width-auto">This is a box where you can change the width.</div>
+      <div class="block width-auto padding border margin">
+        <p>width: 设置为auto，元素占据空间不超过容器，元素内容自动收缩</p>
+        <p>容器宽度为 800px，减去margin距离，实际盒子模型大小为780px</p>
+        <p>标准盒子模型下：width(auto) = content(auto)</p>
+        <p>box width(780px) = (content)(auto) + padding + border</p>
+        <p>content width: 780 - 10 * 2 - 2 * 2 = 756px</p>
+      </div>
+      <div class="block width-auto padding border margin borderBox">
+        <b>设置了 box-sizing: border-box</b>
+        <p>虽然现在是IE模型，但是因为width: auto，所以仍符合上面规则，盒子模型大小是780px</p>
+        <p>IE盒子模型下：width(auto) = (content + padding + border)(auto)</p>
+        <p>box width(780px) = (content + padding + border)(auto)</p>
+        <p>content width: 780 - 10 * 2 - 2 * 2 = 756px</p>
+      </div>
+      <p class="red">padding, border 是固定值，所以不管哪种模型使用 width：auto，伸缩的都是content区域；</p>
+      <p>width 设置 min-content</p>
+      <div class="block width-min-content">This is a box where you can change the width.</div>
+      <div class="inline-block width-min-content">
+        This is a box where you can change the width.
+      </div>
+      <p>width 设置 max-content</p>
+      <div class="block width-max-content">This is a box where you can change the width.</div>
+      <div class="inline-block width-max-content">
+        This is a box where you can change the width.
+      </div>
+      <p>
+        fit-content([length-percentage])是什么？根据公式：min(max-content, max(min-content,
+        [length-percentage])) 得出最终值
+      </p>
+    </div>
+    <p>参考资料</p>
+    <ol>
+      <li><a href="https://www.456bereastreet.com/archive/201112/the_difference_between_widthauto_and_width100/">The difference between width:auto and width:100%</a></li>
+      <li><a href="https://css-tricks.com/almanac/properties/w/width/">width-CSS-TRICKS</a></li>
+    </ol>
+
+  </body>
+</html>
