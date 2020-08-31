@@ -8,7 +8,6 @@ function Car(make, model, year) {
 }
 // new 支持构造函数及初始化参数
 const car1 = new Car('Eagle', 'Talon TSi', 1993);
-
 console.log(car1.make);
 
 /* 实现一个 类似new操作的函数，支持传入构造函数及初始化参数 */
