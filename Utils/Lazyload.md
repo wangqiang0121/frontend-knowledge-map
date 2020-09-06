@@ -9,7 +9,7 @@
 
 ### 具体实现
 - 渲染列表时，非首屏图片src设为默认图片，真实图片地址存放在`data-*`中
-- 监听`window.onscroll`事件，注意节流（throttle）或防抖（debounce）
+- 监听`window.onscroll`事件，注意节流（throttle）
 - 判断图片是否进入视窗内，主要判断三个高度：
   - 当前body滚动的高度：`document.body.scrollTop`
   - 视窗的高度 `window.innerHeight`
