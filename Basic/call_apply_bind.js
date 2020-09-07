@@ -61,28 +61,21 @@ console.log(
  *
  * bind多次调用后的结果
  * https://juejin.im/post/6844904039390396430 */
-Function.prototype.myBind = function (context) {
-  if (typeof this !== "function") {
-    throw new Error(
-      "Function.prototype.bind - what is trying to be bound is not callable"
-    );
-  }
-
-  var self = this;
-  var args = Array.prototype.slice.call(arguments, 1);
-
-  var fNOP = function () {};
-
-  var fBound = function () {
+Function.prototype.myBind = function () {
+  var args = arguments || [];
+  var context = args[0];
+  var func = this;
+  var thisArgs = Array.prototype.slice.call(arguments, 1);
+  var returnFunc = function () {
     var bindArgs = Array.prototype.slice.call(arguments);
-    return self.apply(
-      this instanceof fBound ? this : context,
-      args.concat(bindArgs)
+    // 判断当前如果是new操作（new 操作过程中，this执行自己），则不去修改上下文指向
+    return func.apply(
+      this instanceof returnFunc ? this : context,
+      thisArgs.concat(bindArgs)
     );
   };
 
-  fNOP.prototype = self.prototype;
-  fBound.prototype = new fNOP();
-  return fBound;
+  returnFunc.prototype = new func()
+  return returnFunc
 };
 console.log(Math.max.myBind(Math, 34, 5, 3, 6, 54, 6, -67, 5, 7, 6, -8, 687)());

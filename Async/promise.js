@@ -24,7 +24,7 @@ const REJECTED = 'rejcted';
 
 function MyPromise(fn) {
   const that = this;
-  that.state = PENDING
+  that.state = PENDING;
   that.value = null;
   // 用于保存then和catch内的回调，因为在等待状态中，应该讲后续回调存下来，待结束后调用。
   that.resolvedCallbacks = [];
