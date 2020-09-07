@@ -1,34 +1,53 @@
 /**
- * 参考：
- * 适合初学者的JavaScript面向对象
- * https://developer.mozilla.org/zh-CN/docs/Learn/JavaScript/Objects/Object-oriented_JS
+ * 类与面向对象编程 Note
+ * https://www.ituring.com.cn/book/tupubarticle/32494
  *
- * 类的概念（属性、方法、构造函数）
- * JavaScript 利用构造函数来定义对象及他们的特征，构造函数创建的实例，并非完全复制，而是通过原型链实现的。
- * new 的概念、实现 => 改变this指向，定义原型
+ * 从创建对象开始看。虽然使用Object构造函数或字面量可以方便地创建对象，但这些方式也有明显不足：创建具有同样接口的多个对象需要重复编写很多代码。
  *
- * 类的继承
-*/
+ * 于是，我们要解决的问题便是，如何快速创建具有同样接口的多个对象。
+ */
 
-/* 类的声明 */
+//  8.2.2 工厂模式
+console.log('------- 8.2.2 工厂模式 -------')
+function createPerson(name, age, job) {
+  let o = new Object();
+  o.name = name;
+  o.age = age;
+  o.job = job;
+  o.sayName = function() {
+    console.log(this.name);
+  }
+  return o;
+}
+let person1 = createPerson('Nicholas', 29, "Software Engineer");
+let person2 = createPerson('Grege', 27, "Doctor");
+console.log(person1);
+console.log(person2);
+console.log(person1.constructor);
+// 解决了创建多个类似对象的问题，但是没有解决对象类型的问题；
 
-// es5
-var Animal = function () {
-  this.name = "Animal";
-};
-
-// es6
-class Animal2 {
-  constructor() {
-    // super() 调用父类的构造函数
-    this.name = "Animal2";
+// 8.2.3 构造函数模式
+console.log('------- 8.2.3 构造函数模式 -------')
+function Person(name, age, job) {
+  this.name = name;
+  this.age = age;
+  this.job = job;
+  this.sayName = function() {
+    console.log(this.name);
   }
 }
+let person3 = new Person('Nicholas', 29, "Software Engineer");
+let person4 = new Person('Grege', 27, "Doctor");
+console.log(person3);
+console.log(person4);
+console.log(person3.constructor);
+console.log(person3 instanceof Person);
+console.log(person3 instanceof Object);
+// 解决了创建问题；解决了类型问题；但是对象内的函数在每次创建时重新生成，是两个完全不同的实例。但希望达成继承的效果，需要两个对象公用一处对象实例。
+// 可以将 sayName 方法，提取出来，作为公共方法
+function sayName () {
+  console.log(this.name);
+}
+// 但这样做污染了全局作用域。
 
-/**
- * 类的实例化
- * new是什么？new做了什么？ */
-console.log(new Animal(), new Animal2());
-
-
-/** 类的继承 */
+// 继续 => oop_prototype.js

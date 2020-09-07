@@ -58,6 +58,7 @@ console.log(
 /**
  * bind(context, args), 返回一个函数
  * https://github.com/mqyqingfeng/Blog/issues/12
+ *
  * bind多次调用后的结果
  * https://juejin.im/post/6844904039390396430 */
 Function.prototype.myBind = function (context) {
